@@ -2,6 +2,9 @@
 
 communication: UDP(Raspberry pi 5 -> PC) to use GStreamer
 
+#installation. (Windows)
+pip install ultralytics
+
 #installation.(Ubuntu)
 sudo apt-get install v4l-utils
 
