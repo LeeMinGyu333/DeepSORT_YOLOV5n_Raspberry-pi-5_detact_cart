@@ -2,6 +2,10 @@
 
 communication: UDP(Raspberry pi 5 -> PC) to use GStreamer
 
+#installation.(Ubuntu)
+sudo apt-get install v4l-utils
+
+
 #1. Raspberry Pi code (transfer webcam screen)
 # Transfer H264(compacted) to use Gstreamer
 sudo apt update
