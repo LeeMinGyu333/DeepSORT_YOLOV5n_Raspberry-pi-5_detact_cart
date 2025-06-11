@@ -10,11 +10,13 @@ sudo apt-get install v4l-utils
 # Transfer H264(compacted) to use Gstreamer
 sudo apt update
 sudo apt install gstreamer1.0-tools gstreamer1.0-plugins-base gstreamer1.0-plugins-good
+ls /dev/      #check video
+sudo ufw disable
 
 
 # in Raspberry Pi Terminal,  <PC_IP>= YOUR PC IP
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
-  video/x-raw,width=640,height=480,framerate=30/1 ! \
+  video/x-raw,width=640,height=640,framerate=30/1 ! \
   videoconvert ! \
   x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! \
   rtph264pay config-interval=1 pt=96 ! \
