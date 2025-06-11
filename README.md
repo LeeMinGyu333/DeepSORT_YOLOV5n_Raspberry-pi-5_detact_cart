@@ -17,13 +17,17 @@ ls /dev/      #check video
 sudo ufw disable
 
 
-# in Raspberry Pi Terminal,  <PC_IP>= YOUR PC IP
+# in Raspberry Pi Terminal,  <PC_IP>= YOUR PC IP, erase \ 
 gst-launch-1.0 v4l2src device=/dev/video0 ! \
-  video/x-raw,width=640,height=640,framerate=30/1 ! \
-  videoconvert ! \
-  x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! \
-  rtph264pay config-interval=1 pt=96 ! \
-  udpsink host=<PC_IP> port=5000
+video/x-raw,width=640,height=640,framerate=30/1 ! \
+videoconvert ! \
+x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! \
+rtph264pay config-interval=1 pt=96 ! \
+udpsink host=<PC_IP> port=5000
+
+#or
+
+gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw,width=640,height=640,framerate=30/1 ! videoconvert ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! rtph264pay config-interval=1 pt=96 ! udpsink host=<PC_IP> port=5000
 
 
 #2. Windows PC code (YOLO5n + DeepSORT)
