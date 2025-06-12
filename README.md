@@ -210,6 +210,17 @@ cv2.destroyAllWindows()
 
 
 
+------------------------------------------
+gst-launch-1.0 v4l2src device=/dev/video0 ! video/x-raw, format=YUY2, width=640, height=480, framerate=22/1 ! videoconvert ! video/x-raw, format=I420 ! x264enc tune=zerolatency bitrate=500 speed-preset=superfast ! rtph264pay config-interval=1 pt=96 ! udpsink host=192.168.0.18 port=5000
+
+
+
+#cam checking
+v4l2-ctl --list-formats-ext -d /dev/video0
+
+#MJPEG streaming 
+v4l2rtspserver -v MJPG -W 640 -H 480 -F 22 /dev/video0
+
 
 
 
